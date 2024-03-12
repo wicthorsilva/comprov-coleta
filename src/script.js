@@ -15,8 +15,32 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     function exibirNotaFiscal(valor) {
-        const divNotasFiscais = document.createElement("div");
-        divNotasFiscais.textContent = "Nota Fiscal: " + valor;
-        document.body.appendChild(divNotasFiscais);
-    }
+    const divNotaFiscal = document.createElement("div");
+    divNotaFiscal.classList.add("notaFiscal");
+
+    const textoNF = document.createElement("span");
+    textoNF.textContent = "Nota Fiscal: " + valor;
+    divNotaFiscal.appendChild(textoNF);
+
+    const botaoEditar = document.createElement("button");
+    botaoEditar.textContent = "Editar";
+    botaoEditar.addEventListener("click", function() {
+        const inputNFs = document.querySelector("input[name='NFs']");
+        inputNFs.value = valor;
+        inputNFs.focus();
+    });
+    divNotaFiscal.appendChild(botaoEditar);
+
+    const botaoExcluir = document.createElement("button");
+    botaoExcluir.textContent = "Excluir";
+    botaoExcluir.addEventListener("click", function() {
+        divNotaFiscal.remove();
+    });
+    divNotaFiscal.appendChild(botaoExcluir);
+
+    const divContentNF = document.querySelector(".contentNF");
+    divContentNF.appendChild(divNotaFiscal);
+}
+
+    
 });

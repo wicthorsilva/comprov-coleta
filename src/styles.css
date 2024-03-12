@@ -47,6 +47,20 @@ form {
 
 /* Estilos de botão*/
 
+.notaFiscal {
+    background-color: #f0f0f0;
+    /* width: 40%; */
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
 button {
     display: block;
     margin: 20px auto;
