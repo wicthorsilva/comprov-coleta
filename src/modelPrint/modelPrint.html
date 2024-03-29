@@ -4,38 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Imprimir Documento</title>
-    <link rel="stylesheet" href="./stylesPrint.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-    <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
-    
+    <link rel="stylesheet" href="../stylesPrint.css">
 </head>
 <body>
-    
     <div class="documento">
         <img src="" alt="G.rotadomar">
-
-        <!-- modelPrint.html -->
-
         <div class="content">
             <h2>Comprovante de coleta</h2>
             <h3>Transportadora: <span id="transport"></span></h3>
             <p>Volumes: <span id="volumes"></span></p>
-            <p>Notas Fiscais: <span id="NFs"></span></p>
-            <!-- Outros elementos do seu formulário -->
+            <p>Notas Fiscais: </p>
+            <ul id="notasFiscais"></ul>
         </div>
-
     </div>
-   
     <div class="buttons">
         <button id="voltarBtn">Voltar à Página Inicial</button>
-        <button id="imprimirBtn" onclick="imprimirDocumento()">Gerar PDF para Imprimir</button>
+        <button id="imprimirBtn">Gerar PDF para Imprimir</button>
     </div>
+    <script>
+        document.getElementById("voltarBtn").addEventListener("click", function () {
+            window.location.href = "../../index.html";
+        });
 
-<script>
-    document.getElementById("voltarBtn").addEventListener("click", function () {
-        window.location.href = "../../index.html";
-    });
-</script>
-    <script src="../script.js" defer></script>
+        // Extraindo parâmetros da URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const transport = urlParams.get('transport');
+        const volumes = urlParams.get('volumes');
+        const nfs = urlParams.get('nfs');
+        const notasFiscaisString = urlParams.get('notasFiscais');
+        const notasFiscais = JSON.parse(notasFiscaisString);
+
+        // Exibindo os parâmetros na página
+        document.getElementById("transport").textContent = transport;
+        document.getElementById("volumes").textContent = volumes;
+
+        // Exibindo as notas fiscais
+        const notasFiscaisElement = document.getElementById("notasFiscais");
+        notasFiscais.forEach(nota => {
+            const notaElement = document.createElement("li");
+            notaElement.textContent = nota;
+            notasFiscaisElement.appendChild(notaElement);
+        });
+    </script>
 </body>
 </html>

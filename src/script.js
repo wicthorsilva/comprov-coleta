@@ -1,24 +1,15 @@
-const parametros = [
-        "volumes", "NFs", "transport"
-    ];
-
 document.addEventListener("DOMContentLoaded", function() {
-    
-
     const inputNFs = document.querySelector("input[name='NFs']");
-    let editando = null;
+    const contentNF = document.querySelector(".contentNF");
 
-    inputNFs.addEventListener("keypress", function(event) {
+    inputNFs.addEventListener("keydown", function(event) {
         if (event.key === "Enter") {
             event.preventDefault();
-            const valorNFs = inputNFs.value;
-            if (editando) {
-                editando.textContent = "Nota Fiscal: " + valorNFs;
-                editando = null;
-            } else {
+            const valorNFs = inputNFs.value.trim();
+            if (valorNFs !== "") {
                 exibirNotaFiscal(valorNFs);
+                inputNFs.value = "";
             }
-            inputNFs.value = "";
         }
     });
 
@@ -34,10 +25,8 @@ document.addEventListener("DOMContentLoaded", function() {
         botaoEditar.textContent = "Editar";
         botaoEditar.addEventListener("click", function(event) {
             event.preventDefault();
-            const inputNFs = document.querySelector("input[name='NFs']");
             inputNFs.value = valor;
             inputNFs.focus();
-            editando = textoNF;
         });
         divNotaFiscal.appendChild(botaoEditar);
 
@@ -45,69 +34,34 @@ document.addEventListener("DOMContentLoaded", function() {
         botaoExcluir.textContent = "Excluir";
         botaoExcluir.addEventListener("click", function() {
             divNotaFiscal.remove();
-            if (editando === textoNF) {
-                editando = null;
-            }
         });
         divNotaFiscal.appendChild(botaoExcluir);
 
-        const divContentNF = document.querySelector(".contentNF");
-        divContentNF.appendChild(divNotaFiscal);
+        contentNF.appendChild(divNotaFiscal);
     }
 
-    // Função para enviar o formulário
+    const preencherBtn = document.getElementById("preencherBtn");
 
-    const params = new URLSearchParams(window.location.search);
+    preencherBtn.addEventListener("click", function(event) {
+        event.preventDefault(); // Previne o envio do formulário
 
-    parametros.forEach(param => {
-        document.getElementById(param).textContent = params.get(param) || "";
+        const transportSelect = document.getElementById("transport");
+        const volumesInput = document.getElementById("volumes");
+        const nfsInput = document.getElementById("nfs");
+
+        const selectedTransport = transportSelect.value;
+        const volumes = volumesInput.value;
+        const nfs = nfsInput.value;
+
+        // Coletando os valores das notas fiscais
+        const notasFiscais = [];
+        const notasFiscaisElements = document.querySelectorAll('.notaFiscal span');
+        notasFiscaisElements.forEach(element => {
+            notasFiscais.push(element.textContent.replace('Nota Fiscal: ', ''));
+        });
+
+        // Redirecionando para a página modelPrint.html com os parâmetros
+        window.location.href = `./src/modelPrint/modelPrint.html?transport=${selectedTransport}&volumes=${volumes}&nfs=${nfs}&notasFiscais=${JSON.stringify(notasFiscais)}`;
     });
-
-    function getInputValue(id) {
-        return document.getElementById(id).value;
-    }
-
-    document.getElementById("formulario").addEventListener("submit", function (event) {
-        const valores = parametros.reduce((acc, param) => {
-            acc[param] = getInputValue(param + "Input");
-            return acc;
-        }, {});
-
-
-        const searchParams = new URLSearchParams(valores);
-
-        window.location.href = `src/modelPrint/modelPrint.html?${searchParams.toString()}`;
-
-    // Evitar o comportamento padrão de envio do formulário
-    event.preventDefault();
-
-
-    // function enviarFormulario() {
-    // // Obtém os valores dos campos do formulário
-    // const transportadora = document.querySelector("select[name='transport']").value;
-    // const volumes = document.querySelector("input[name='volumes']").value;
-    // const NFs = document.querySelector("input[name='NFs']").value;
-
-    // // Constrói a URL com os parâmetros
-    // const searchParams = new URLSearchParams();
-    // searchParams.set('transport', transportadora);
-    // searchParams.set('volumes', volumes);
-    // searchParams.set('NFs', NFs);
-    // const url = `src/modelPrint/modelPrint.html?${searchParams.toString()}`;
-
-    // Redireciona para a página modelPrint.html com os parâmetros na URL
-    // window.location.href = url;
-
-    // Impede o envio padrão do formulário
-    // return false;
-    }
-
-
-
-    // Event listener para o envio do formulário
-    // const form = document.getElementById("formulario");
-    // form.addEventListener("submit", function(event) {
-    //     event.preventDefault(); // Impede o envio padrão do formulário
-    //     enviarFormulario(); // Chama a função para enviar o formulário
-    // });
 });
+
