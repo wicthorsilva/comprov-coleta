@@ -65,3 +65,39 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+
+
+
+    const url = `${window.location.origin}/src/modelPrint/modelPrint.html${window.location.search}`;
+
+
+
+
+        function gerarPDF(url) {
+    const element = document.getElementById("documento");
+
+    html2pdf(element, {
+        margin: 10,
+        filename: 'documento.pdf',
+        html2canvas: { scale: 2, scrollX: 0, scrollY: 0 },  // Adicione estas opções
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    }).then((pdf) => {
+        // Criar um blob com o conteúdo do PDF
+        const blob = pdf.output('blob');
+
+        // Criar um blob URL
+        const blobURL = URL.createObjectURL(blob);
+
+        // Abrir o blob URL em uma nova janela
+        const newWindow = window.open(blobURL, '_blank');
+        
+        // Liberar o blob URL quando a janela for fechada
+        newWindow.addEventListener('beforeunload', () => URL.revokeObjectURL(blobURL));
+    });
+}
+
+
+function imprimirDocumento() {
+    const url = `${window.location.origin}/src/modelPrint/modelPrint.html${window.location.search}`;
+    gerarPDF(url);
+}
