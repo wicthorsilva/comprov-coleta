@@ -78,7 +78,7 @@ span{
 
 @media print {
     .documento {
-        font-size: 10pt;
+        font-size: 14pt;
         width: 100%;
         margin: auto;
     }
