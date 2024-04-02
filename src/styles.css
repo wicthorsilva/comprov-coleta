@@ -45,6 +45,10 @@ form {
    text-decoration: none;
 }
 
+.contentTransport-data {
+    display: flex;
+}
+
 /* Estilos de botão*/
 
 .notaFiscal {

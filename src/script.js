@@ -48,10 +48,12 @@ document.addEventListener("DOMContentLoaded", function() {
         const transportSelect = document.getElementById("transport");
         const volumesInput = document.getElementById("volumes");
         const nfsInput = document.getElementById("nfs");
+        const dateColet = document.getElementById("date");
 
         const selectedTransport = transportSelect.value;
         const volumes = volumesInput.value;
         const nfs = nfsInput.value;
+        const date = dateColet.value;
 
         // Coletando os valores das notas fiscais
         const notasFiscais = [];
@@ -61,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 
         // Redirecionando para a página modelPrint.html com os parâmetros
-        window.location.href = `./src/modelPrint/modelPrint.html?transport=${selectedTransport}&volumes=${volumes}&nfs=${nfs}&notasFiscais=${JSON.stringify(notasFiscais)}`;
+        window.location.href = `./src/modelPrint/modelPrint.html?transport=${selectedTransport}&date=${date}&volumes=${volumes}&nfs=${nfs}&notasFiscais=${JSON.stringify(notasFiscais)}`;
     });
 });
 
@@ -77,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const element = document.getElementById("documento");
 
     html2pdf(element, {
-        margin: 10,
+        // margin: 20,
         filename: 'documento.pdf',
         html2canvas: { scale: 2, scrollX: 0, scrollY: 0 },  // Adicione estas opções
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
@@ -97,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function() {
 }
 
 
-function imprimirDocumento() {
-    const url = `${window.location.origin}/src/modelPrint/modelPrint.html${window.location.search}`;
-    gerarPDF(url);
-}
+// function imprimirDocumento() {
+//     const url = `${window.location.origin}/src/modelPrint/modelPrint.html${window.location.search}`;
+//     gerarPDF(url);
+// }

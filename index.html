@@ -17,18 +17,28 @@
     <form id="formulario">
         <div id="formularioTransport">
             <div class="cardsTransport">
-                <h4>Selecione a transportadora</h4>
-                <div class="transportSelect">
-                    <select id="transport">
-                        <option value="">Selecione a transportadora</option>
-                        <option value="progresso">Progresso</option>
-                        <option value="azul">Azul</option>
-                        <option value="braspress">Braspress</option>
-                        <option value="rb-cargas">RB Cargas</option>
-                        <option value="rtx">RTX</option>
-                    </select>
+                
+                <div class="contentTransport-data">
+                    <div class="transportSelect">
+                        <Label>Transportadora</Label> <br>
+                        <select id="transport">
+                            <option value="">Selecione a transportadora</option>
+                            <option value="progresso">Progresso</option>
+                            <option value="azul">Azul</option>
+                            <option value="braspress">Braspress</option>
+                            <option value="rb-cargas">RB Cargas</option>
+                            <option value="rtx">RTX</option>
+                        </select>
+                    </div>
+
+                    <div class="data" id="date" style="margin-left: 2rem;">
+                        <label>Data de Coleta</label><br>
+                        <input type="date">
+                    </div>
+                    
                 </div>
             </div>
+            
             <div>
                 <label>Quantidade de volumes</label><br>
                 <input type="number" id="volumes">

@@ -14,15 +14,16 @@
     <div class="documento" id="documento">
         <div class="header">
             <img class="headerImg" src="./img/paleta-Grtdm.png" alt="paleta-rotadomar">
-            <p>01/04/2024</p>
+            <p id="date"></p>
         </div>
 
         <div class="content">
-            <h2>Comprovante de coleta</h2>
+            <h2 class="titlePage" style="text-align: center; margin-bottom: 4rem;">Comprovante de coleta</h2>
+
             <h3>Transportadora: <span id="transport"></span></h3>
             <h3>Volumes: <span id="volumes"></span></h3>
             <h3>Local da coleta: Rota Do  Mar Fábrica</h3>
-            <h3>Notas Fiscais: </h3>
+            <h3 style="margin-top: 2rem;">Notas Fiscais: </h3>
 
             <div class="contentNFs" id="notasFiscais">
 
@@ -35,17 +36,29 @@
     </div>
     <div class="buttons">
         <button id="voltarBtn">Voltar à Página Inicial</button>
-        <button id="imprimirBtn" onclick="imprimirDocumento()">Gerar PDF para Imprimir</button>
+        <button id="imprimirDocumentoBtn">Imprimir Documento</button>
+
     </div>
     <script>
         document.getElementById("voltarBtn").addEventListener("click", function () {
             window.location.href = "../../index.html";
         });
 
+        
+
+        // Dentro do bloco <script> existente
+
+        document.getElementById("imprimirDocumentoBtn").addEventListener("click", function() {
+            window.print();
+        });
+
+
+
 
         // Extraindo parâmetros da URL
         const urlParams = new URLSearchParams(window.location.search);
         const transport = urlParams.get('transport');
+        const date = urlParams.get('date');
         const volumes = urlParams.get('volumes');
         const nfs = urlParams.get('nfs');
         const notasFiscaisString = urlParams.get('notasFiscais');
@@ -54,12 +67,14 @@
         // Exibindo os parâmetros na página
         document.getElementById("transport").textContent = transport;
         document.getElementById("volumes").textContent = volumes;
+        document.getElementById("date").textContent = date;
 
         // Exibindo as notas fiscais
         const notasFiscaisElement = document.getElementById("notasFiscais");
         notasFiscais.forEach(nota => {
             const notaElement = document.createElement("span");
             notaElement.textContent = nota;
+            notaElement.classList.add("nota-fiscal");
             notasFiscaisElement.appendChild(notaElement);
         });
 
