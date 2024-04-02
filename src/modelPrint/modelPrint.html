@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Imprimir Documento</title>
     <link rel="stylesheet" href="./stylesPrint.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.1/html2pdf.bundle.min.js"></script>
@@ -21,7 +24,7 @@
             <h2 class="titlePage" style="text-align: center; margin-bottom: 4rem;">Comprovante de coleta</h2>
 
             <h3>Transportadora: <span id="transport"></span></h3>
-            <h3>Volumes: <span id="volumes"></span></h3>
+            <h3>Volumes: <span id="volumes" style="color: rgb(180, 0, 0);"></span></h3>
             <h3>Local da coleta: Rota Do  Mar Fábrica</h3>
             <h3 style="margin-top: 2rem;">Notas Fiscais: </h3>
 
@@ -38,8 +41,13 @@
         </div>
     </div>
     <div class="buttons">
-        <button id="voltarBtn">Voltar à Página Inicial</button>
-        <button id="imprimirDocumentoBtn">Imprimir Documento</button>
+        <button id="voltarBtn" style="align-items: center;">
+            <i class="fa fa-arrow-left" style="font-size:20px; color:rgb(42, 117, 255)"></i> Voltar
+        </button>
+
+        <button id="imprimirDocumentoBtn">
+            Imprimir <i class="fa fa-print" style="font-size:20px;"></i>
+        </button>
 
     </div>
     <script>
@@ -66,6 +74,24 @@
         const nfs = urlParams.get('nfs');
         const notasFiscaisString = urlParams.get('notasFiscais');
         const notasFiscais = JSON.parse(notasFiscaisString);
+        const selectedTransport = urlParams.get('transport');
+
+       // Aplicando a cor condicional com base na opção selecionada
+        const transportElement = document.getElementById("transport");
+        transportElement.textContent = transport;
+
+        if (selectedTransport === "progresso") {
+            transportElement.style.color = "#1d7f14"; 
+        } else if (selectedTransport === "rb-cargas") {
+            transportElement.style.color = "#2a4e2b"; 
+        } else if (selectedTransport === "azul") {
+            transportElement.style.color = "#204eee"; 
+        } else if (selectedTransport === "braspress") {
+            transportElement.style.color = "#7248fb"; 
+        } else if (selectedTransport === "rtx") {
+            transportElement.style.color = "#fc9000"; 
+        }
+        
 
         if (dateInput.match(/\d{4}-\d{2}-\d{2}/)) {
             // Divide a data em partes

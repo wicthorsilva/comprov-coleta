@@ -51,11 +51,34 @@ span{
     text-transform: capitalize;
 }
 
+.buttons{
+    text-align: center;
+    align-items: center;
+}
+.buttons button{
+    width: 125px;
+    font-size: 20px;
+    background-color: white;
+    /* border: none; */
+    cursor: pointer;
+}
+
+#voltarBtn{
+    border: none;
+    border-color: rgb(0, 47, 255);
+    color: rgb(0, 47, 255);
+}
+#imprimirDocumentoBtn{
+    border: none;
+    background-color: #e78301;
+    color: white;
+    border-radius: 5px;
+}
 
 
 @media print {
     .documento {
-        font-size: 12pt;
+        font-size: 10pt;
         width: 100%;
         margin: auto;
     }
