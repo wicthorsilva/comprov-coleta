@@ -14,7 +14,7 @@
     <div class="documento" id="documento">
         <div class="header">
             <img class="headerImg" src="./img/paleta-Grtdm.png" alt="paleta-rotadomar">
-            <p id="date"></p>
+            <p id="dateInput"></p>
         </div>
 
         <div class="content">
@@ -28,6 +28,9 @@
             <div class="contentNFs" id="notasFiscais">
 
             </div>
+
+            <h4>Nome Motorista: ________________________________________</h4>
+            <h4>CPF Motorista: _____._____._____-____</h4>
         </div>
 
         <div class="contentFooter">
@@ -58,16 +61,26 @@
         // Extraindo parâmetros da URL
         const urlParams = new URLSearchParams(window.location.search);
         const transport = urlParams.get('transport');
-        const date = urlParams.get('date');
+        const dateInput = urlParams.get('dateInput');
         const volumes = urlParams.get('volumes');
         const nfs = urlParams.get('nfs');
         const notasFiscaisString = urlParams.get('notasFiscais');
         const notasFiscais = JSON.parse(notasFiscaisString);
 
+        if (dateInput.match(/\d{4}-\d{2}-\d{2}/)) {
+            // Divide a data em partes
+            const parts = dateInput.split('-');
+            //formato brasileiro (dd/mm/aaaa)
+            const formattedDateInput = `${parts[2]}/${parts[1]}/${parts[0]}`;
+            document.getElementById("dateInput").textContent = formattedDateInput;
+        } else {
+            document.getElementById("dateInput").textContent = dateInput;
+        }
+
         // Exibindo os parâmetros na página
         document.getElementById("transport").textContent = transport;
         document.getElementById("volumes").textContent = volumes;
-        document.getElementById("date").textContent = date;
+        // document.getElementById("dateInput").textContent = formattedDateInput;
 
         // Exibindo as notas fiscais
         const notasFiscaisElement = document.getElementById("notasFiscais");

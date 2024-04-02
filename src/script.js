@@ -21,14 +21,14 @@ document.addEventListener("DOMContentLoaded", function() {
         textoNF.textContent = "Nota Fiscal: " + valor;
         divNotaFiscal.appendChild(textoNF);
 
-        const botaoEditar = document.createElement("button");
-        botaoEditar.textContent = "Editar";
-        botaoEditar.addEventListener("click", function(event) {
-            event.preventDefault();
-            inputNFs.value = valor;
-            inputNFs.focus();
-        });
-        divNotaFiscal.appendChild(botaoEditar);
+        // const botaoEditar = document.createElement("button");
+        // botaoEditar.textContent = "Editar";
+        // botaoEditar.addEventListener("click", function(event) {
+        //     event.preventDefault();
+        //     inputNFs.value = valor;
+        //     inputNFs.focus();
+        // });
+        // divNotaFiscal.appendChild(botaoEditar);
 
         const botaoExcluir = document.createElement("button");
         botaoExcluir.textContent = "Excluir";
@@ -48,12 +48,12 @@ document.addEventListener("DOMContentLoaded", function() {
         const transportSelect = document.getElementById("transport");
         const volumesInput = document.getElementById("volumes");
         const nfsInput = document.getElementById("nfs");
-        const dateColet = document.getElementById("date");
+        const dateColet = document.getElementById("dateInput");
 
         const selectedTransport = transportSelect.value;
         const volumes = volumesInput.value;
         const nfs = nfsInput.value;
-        const date = dateColet.value;
+        const dateInput = dateColet.value;
 
         // Coletando os valores das notas fiscais
         const notasFiscais = [];
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 
         // Redirecionando para a página modelPrint.html com os parâmetros
-        window.location.href = `./src/modelPrint/modelPrint.html?transport=${selectedTransport}&date=${date}&volumes=${volumes}&nfs=${nfs}&notasFiscais=${JSON.stringify(notasFiscais)}`;
+        window.location.href = `./src/modelPrint/modelPrint.html?transport=${selectedTransport}&dateInput=${dateInput}&volumes=${volumes}&nfs=${nfs}&notasFiscais=${JSON.stringify(notasFiscais)}`;
     });
 });
 

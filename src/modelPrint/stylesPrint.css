@@ -17,7 +17,7 @@
     width: 85%;
 }
 .headerImg{
-    height: 30px;
+    height: 25px;
 }
 
 .content{
@@ -31,7 +31,7 @@
     bottom: 0;
 }
 .footerImg{
-    height: 25px;
+    height: 20px;
 }
 
 .nota-fiscal {
@@ -61,15 +61,16 @@ span{
     }
 
     .header {
-        width: 100%;
-        margin-left: auto;
-        margin-right: auto;
+        width: 90%;
+        /* margin-left: auto;
+        margin-right: auto; */
     }
 
     .contentFooter {
         position: absolute;
         bottom: 0;
         width: 100%;
+        margin-left: -1rem;
         height: 40px; /* Altura do footer */
     }
 
