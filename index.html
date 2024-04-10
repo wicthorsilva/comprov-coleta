@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coleta - Transport</title>
-    <link rel="shortcut icon" href="src/modelPrint/img/onibus-icon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="src/img/car_Prancheta 1.png" type="image/x-icon">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="./src/styles.css">
@@ -12,15 +12,20 @@
     <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
 </head>
 <body class="bodyIndex">
-    <h1>Comprovante de coleta</h1>
+    <section>
     <form id="formulario">
+        <div class="titleForm">
+            <img src="./src/img/car_Prancheta 1.png" alt="img">
+            <h3>Comprovante de coleta</h3>
+        </div>
+
         <div id="formularioTransport">
             <div class="cardsTransport">
                 
-                <div class="contentTransport-data">
+                
                     <div class="transportSelect">
                         <Label>Transportadora</Label> <br>
-                        <select id="transport">
+                        <select class="form-select" id="transport">
                             <option value="">Selecione a transportadora</option>
                             <option value="progresso">Progresso</option>
                             <option value="azul">Azul</option>
@@ -29,24 +34,34 @@
                             <option value="rtx">RTX</option>
                         </select>
                     </div>
+                
+                    <div class="row">
+                        <div class="data col" id="date">
+                            <label>Data de Coleta</label><br>
+                            <input class="form-control" id="dateInput" type="date">
+                        </div>
 
-                    <div class="data" id="date" style="margin-left: 2rem;">
-                        <label>Data de Coleta</label><br>
-                        <input id="dateInput" type="date">
+                        <div class="col">
+                            <label>Quantidade de volumes</label><br>
+                            <input class="form-control" type="number" id="volumes">
+                        </div>
                     </div>
-                    
-                </div>
+
             </div>
-            
+
+
             <div>
-                <label>Quantidade de volumes</label><br>
-                <input type="number" id="volumes">
-            </div>
-            <div>
-                <label>Notas Fiscais: (Press Enter após digitar)</label><br>
-                <div style="display: flex;">
-                    <input type="number" name="NFs" id="nfs">
-                    <button type="button" id="preencherBtn">Enviar</button>
+
+                <div class="row">
+                    <label>Notas Fiscais: (Press ENTER após digitar)</label><br>
+                    <div class="col">
+                        
+                        
+                        <input class="form-control" type="number" name="NFs" id="nfs">
+                    </div>
+                    <div class="col">
+                        <button type="button" id="preencherBtn">Enviar</button>
+                    </div>
                 </div>
 
                 <div class="contentNF"></div>
@@ -55,6 +70,7 @@
         </div>
         
     </form>
+    </section>
     
     <script src="./src/script.js"></script>
 </body>

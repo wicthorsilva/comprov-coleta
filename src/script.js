@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
         divNotaFiscal.classList.add("notaFiscal");
 
         const textoNF = document.createElement("span");
-        textoNF.textContent = "Nota Fiscal: " + valor;
+        textoNF.textContent = "NF: " + valor;
         divNotaFiscal.appendChild(textoNF);
 
         // const botaoEditar = document.createElement("button");
