@@ -12,17 +12,30 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.1/html2pdf.bundle.min.js"></script>
+    <script>
+        function startTime(){    
+        const hour = new Date();
+        const h = hour.getHours().toString().padStart(2,'0');
+        const m = hour.getMinutes().toString().padStart(2,'0');
+        const s = hour.getSeconds().toString().padStart(2,'0');
+        document.getElementById('hour').innerHTML=h+":"+m
+        t=setTimeout('startTime()',500);
+        }
+    </script>
 
 </head>
-<body>
+<body onload="startTime()">
     <div class="documento" id="documento">
         <div class="header">
             <img class="headerImg" src="./img/paleta-Grtdm.png" alt="paleta-rotadomar">
-            <p id="dateInput"></p>
+            <div class="dateHour">
+                <p id="dateInput"></p>
+                <p id="hour"></p>
+            </div>
         </div>
 
         <div class="content">
-            <h2 class="titlePage" style="text-align: center; margin-bottom: 4rem;">Comprovante de coleta</h2>
+            <h2 class="titlePage" style="text-align: center; margin-bottom: 4rem;">Comprovante De Coleta</h2>
 
             <h3>Transportadora: <span id="transport"></span></h3>
             <h3>Volumes: <span id="volumes" style="color: rgb(180, 0, 0);"></span></h3>
@@ -34,7 +47,11 @@
             </div>
 
             <h4>Nome Motorista: ________________________________________</h4>
-            <h4>CPF Motorista: _____._____._____-____</h4>
+            <h4>CPF Motorista: ______.______.______-_____</h4>
+            <br>
+            <div class="assFuncionario">
+                <h4>Liberado por:  _______________________</h4>
+            </div>
         </div>
 
         <div class="contentFooter">

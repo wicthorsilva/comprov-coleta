@@ -20,6 +20,14 @@
     height: 25px;
 }
 
+#dateInput{
+    margin-right: 1rem;
+}
+
+.dateHour{
+    display: flex;
+}
+
 .content{
     line-height: 15px;
 }
